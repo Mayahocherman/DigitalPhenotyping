@@ -29,35 +29,35 @@ def get_ri(x_y_z_arr):
     return pow((pow(x_y_z_arr[0], 2) + pow(x_y_z_arr[1], 2) + pow(x_y_z_arr[2], 2)), 0.5)
 
 
-def calculate_average(x_y_z_list, num_hours):
+def calculate_average(x_y_z_list, len_list):
     """
     calculate the average of the ri.
-    the ri list contains only the [x,y,z]!=[0,0,0],
-    so the average will divide by N * num_hours, and not by the length og the ri list.
+    assuming the ri list contains only the [x,y,z]!=[0,0,0],
+    the average will be divided by number of samples
     :param x_y_z_list: list of lists of x, y, z values
-    :param num_hours: on how much hours we are calculating the average
+    :param len_list: count of samples to calculating the average
     :return: the ri array, and the average
     """
     ri_arr = [get_ri(x_y_z) for x_y_z in x_y_z_list]
-    r_avg = (1 / (N * num_hours)) * sum(ri_arr)
+    r_avg = (1 / len_list) * sum(ri_arr)
     return ri_arr, r_avg
 
 
-def calculate_MAD(x_y_z_list, num_hours):
+def calculate_MAD(x_y_z_list, len_list):
     """
     calculate MAD for every day time.
     the ri list contains only the [x,y,z]!=[0,0,0],
-    so the MAD will divide by N * num_hours, and not by the length og the ri list (= dis_arr length).
+    the average will be divided by number of samples
     :param x_y_z_list: list of lists of x, y, z values
-    :param num_hours: on how much hours we are calculating the average
+    :param len_list: count of samples to calculating the average
     :return: the MAD value
     """
     # calculate MAD for every day time.
     # if there is no information on specific second, calculate it as [0,0,0]
-    ri_arr, r_avg = calculate_average(x_y_z_list, num_hours)
+    ri_arr, r_avg = calculate_average(x_y_z_list, len_list)
     dis_arr = [np.abs(ri - r_avg) for ri in ri_arr]
     # MAD = 1/n * ∑ | ri - r' |
-    MAD = (1 / (N * num_hours)) * sum(dis_arr)
+    MAD = (1 / len_list) * sum(dis_arr)
     return MAD
 
 
@@ -169,7 +169,7 @@ class Sensor_Data():
                     for hour in hours_in_day_time:
                         if hour in hours_data_dic:
                             X_Y_Zs_list += hours_data_dic[hour]
-                    day_times_data[day_time_index].append(calculate_MAD(X_Y_Zs_list, len(hours_in_day_time)))
+                    day_times_data[day_time_index].append(calculate_MAD(X_Y_Zs_list, len(X_Y_Zs_list)))
 
                 # for texts:
                 if self.name == 'texts':
