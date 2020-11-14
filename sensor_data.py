@@ -24,9 +24,9 @@ def get_ri(x_y_z_arr):
     """
     the accelerometer result in time i.
     :param x_y_z_arr: x, y, z values
-    :return: (x^2 + y^2 + z^2)^-2
+    :return: (x^2 + y^2 + z^2)^0.5 #chaned to 0.5
     """
-    return pow((pow(x_y_z_arr[0], 2) + pow(x_y_z_arr[1], 2) + pow(x_y_z_arr[2], 2)), -2)
+    return pow((pow(x_y_z_arr[0], 2) + pow(x_y_z_arr[1], 2) + pow(x_y_z_arr[2], 2)), 0.5)
 
 
 def calculate_average(x_y_z_list, num_hours):
