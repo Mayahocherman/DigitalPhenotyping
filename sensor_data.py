@@ -52,8 +52,7 @@ def calculate_MAD(x_y_z_list, len_list):
     :param len_list: count of samples to calculating the average
     :return: the MAD value
     """
-    # calculate MAD for every day time.
-    # if there is no information on specific second, calculate it as [0,0,0]
+    # calculate MAD for every day time
     ri_arr, r_avg = calculate_average(x_y_z_list, len_list)
     dis_arr = [np.abs(ri - r_avg) for ri in ri_arr]
     # MAD = 1/n * ∑ | ri - r' |
