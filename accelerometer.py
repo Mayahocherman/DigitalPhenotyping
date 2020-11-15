@@ -77,4 +77,4 @@ def accelerometer_main(accelerometer_dir):
 
 
 if __name__ == '__main__':
-    accelerometer_main(r'C:\Users\onaki\CyberTraits\cyberTraits\acc_dt')
+    accelerometer_main(r'C:\Users\mayah\PycharmProjects\cyberTraits')
