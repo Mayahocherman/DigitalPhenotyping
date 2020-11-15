@@ -60,7 +60,7 @@ def create_csv_for_machine_learning(data_path, is_research=True):
 	sensors_names = ['power_state', 'calls', 'texts', 'accelerometer'] #, 'bluetooth', 'wifi', 'gps']
 
 	if is_research:
-		app_data_dir = os.path.join(data_path, "cyber_traits_data_edited")
+		app_data_dir = os.path.join(data_path, "Data")
 	else:
 		app_data_dir = data_path
 	check_if_dir_exists(app_data_dir)
@@ -132,4 +132,4 @@ def create_csv_for_machine_learning(data_path, is_research=True):
 
 
 if __name__ == "__main__":
-	create_csv_for_machine_learning(r"C:\Users\onaki\CyberTraits\cyberTraits")
+	create_csv_for_machine_learning(r'C:\Users\mayah\PycharmProjects\cyberTraits')
