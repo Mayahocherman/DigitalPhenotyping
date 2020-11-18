@@ -5,9 +5,9 @@ from useful_functions import *
 from questionnaires import questionnaires_main
 from accelerometer import accelerometer_main
 from power_state import power_state_main
-from bluetooth import bluetooth_main
-from wifi import wifi_main
-from GPS import gps_main
+# from bluetooth import bluetooth_main
+# from wifi import wifi_main
+# from GPS import gps_main
 from texts import texts_main
 from calls import calls_main
 
@@ -37,7 +37,7 @@ def create_csv_for_machine_learning(data_path, is_research=True):
 	at the end, save all of the data (the X data), in a csv file (without the y data).
 	:param is_research: if the current mode is "learn" or "predict"
 	:param data_path: the path to the directory that in it we have all the data we need
-	"""
+
 
 	if is_research:
 		# run the questionnaires code and read the questionnaires data it created
@@ -47,7 +47,7 @@ def create_csv_for_machine_learning(data_path, is_research=True):
 		questionnaires_info_file = open(questionnaires_info_file_path, 'rb')
 		questionnaires_info = pickle.load(questionnaires_info_file)
 		questionnaires_info_file.close()
-
+	"""
 	# data_fields_list_for_machine_learning - will contain the titles of the data of the machine learning
 	# the first title - candidate_id
 	data_fields_list_for_machine_learning = ['candidate_id']
@@ -79,12 +79,12 @@ def create_csv_for_machine_learning(data_path, is_research=True):
 		print(candidate_dir_name)
 
 		if is_research:
-			# calculate the data for the machine learning, only for the candidates that also have questionnaires info
+			"""# calculate the data for the machine learning, only for the candidates that also have questionnaires info
 			if candidate_dir_name not in questionnaires_info:
 				print("The candidate", candidate_dir_name, "doesn't have questionnaires data")
 				# the candidate doesn't have questionnaires data
 				candidates_dic[candidate_dir_name] = False
-				continue
+				continue"""
 			# this candidate have questionnaires data
 			candidates_dic[candidate_dir_name] = True
 
@@ -132,4 +132,4 @@ def create_csv_for_machine_learning(data_path, is_research=True):
 
 
 if __name__ == "__main__":
-	create_csv_for_machine_learning(r'C:\Users\mayah\PycharmProjects\cyberTraits')
+	create_csv_for_machine_learning(r"C:\Users\mayah\PycharmProjects\CyberTraits")

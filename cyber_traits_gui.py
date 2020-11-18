@@ -3,7 +3,7 @@ import threading
 from tkinter import *
 import tkinter.ttk as ttk
 from main_process import create_csv_for_machine_learning
-from predict_traits_score import predict_traits_on_new_data
+#from predict_traits_score import predict_traits_on_new_data
 import numpy as np
 
 
@@ -51,7 +51,7 @@ def organize_predict_traits():
         create_csv_for_machine_learning(data_folder_n, is_research=False)
         # predict the traits scores
         global predicted_traits_file_name
-        predicted_traits_file_name = predict_traits()
+        #predicted_traits_file_name = predict_traits()
         thread_failed = False
     except Exception as e:
         global error_msg
