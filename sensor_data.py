@@ -3,6 +3,7 @@ import collections
 import math
 from useful_functions import *
 from date_time import check_day_time_structure
+import Average_MAD
 
 # num seconds in a hour
 N = 60 * 60
@@ -33,7 +34,6 @@ def calculate_average(x_y_z_list, num_hours):
     """
     calculate the average of the ri.
     the ri list contains only the [x,y,z]!=[0,0,0],
-    so the average will divide by N * num_hours, and not by the length og the ri list.
     :param x_y_z_list: list of lists of x, y, z values
     :param num_hours: on how much hours we are calculating the average
     :return: the ri array, and the average
@@ -43,15 +43,15 @@ def calculate_average(x_y_z_list, num_hours):
     if count_samples!=0:
         r_avg = (1 / (len(x_y_z_list))) * sum(ri_arr)
     else:
-        r_avg=0 #change with r_avg population
+        r_avg=0 #will be replaced in the MAD calculation to the average MAD
     return ri_arr, r_avg
 
 
 def calculate_MAD(x_y_z_list, num_hours):
     """
     calculate MAD for every day time.
-    the ri list contains only the [x,y,z]!=[0,0,0],
-    so the MAD will divide by N * num_hours, and not by the length og the ri list (= dis_arr length).
+    the ri list contains only the [x,y,z]!=[0,0,0]
+    Missing values will be completed with the average MAD
     :param x_y_z_list: list of lists of x, y, z values
     :param num_hours: on how much hours we are calculating the average
     :return: the MAD value
@@ -65,7 +65,7 @@ def calculate_MAD(x_y_z_list, num_hours):
         # MAD = 1/n * ∑ | ri - r' |
         MAD = (1 / count_samples) * sum(dis_arr)
     else:
-        MAD = 0
+        MAD = 0.27189714956443467 #avg_mad of the data (calculated in Average MAD file)
     return MAD
 
 
@@ -78,7 +78,6 @@ class Sensor_Data():
         init function - init the sensor name and initialize the dic_data
         :param sensor_name: the name of the sensor
         """
-
         self.name = sensor_name
 
         # this dictionary will contain the data of every date and every hour.
